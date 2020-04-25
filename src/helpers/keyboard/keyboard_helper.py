@@ -1,5 +1,7 @@
 import win32api, win32con
 import time
+from . import keyboard_scancode as kb_scancode
+
 '''
 https://gist.github.com/chriskiehl/2906125
 '''
@@ -153,6 +155,45 @@ VK_CODE = {'backspace':0x08,
 
 
 
+def press_ingame(*args):
+    '''
+    One press and release using scancodes
+    '''
+    for i in args:
+        kb_scancode.PressKey(kb_scancode.SCANCODES[i][0][0])
+        time.sleep(.05)
+        kb_scancode.ReleaseKey(kb_scancode.SCANCODES[i][0][0])
+
+def pressAndHold_ingame(*args):
+    '''
+    One press (no release!) using scancodes
+    '''
+    for i in args:
+        kb_scancode.PressKey(kb_scancode.SCANCODES[i][0][0])
+        time.sleep(.05)
+
+def release_ingame(*args):
+    '''
+    One release using scancodes
+    '''
+    for i in args:
+        kb_scancode.ReleaseKey(kb_scancode.SCANCODES[i][0][0])
+        time.sleep(.05)
+
+def pressHoldRelease_ingame(*args):
+    '''
+    press and hold passed in strings. Once held, release
+    accepts as many arguments as you want. Using scancodes so suitable for in game
+    '''
+    for i in args:
+        kb_scancode.PressKey(kb_scancode.SCANCODES[i][0][0])
+        time.sleep(.05)
+            
+    for i in args:
+        kb_scancode.ReleaseKey(kb_scancode.SCANCODES[i][0][0])
+        time.sleep(.1)
+
+
 def press(*args):
     '''
     one press, one release.
@@ -187,8 +228,8 @@ def pressHoldRelease(*args):
         time.sleep(.05)
             
     for i in args:
-            win32api.keybd_event(VK_CODE[i],0 ,win32con.KEYEVENTF_KEYUP ,0)
-            time.sleep(.1)
+        win32api.keybd_event(VK_CODE[i],0 ,win32con.KEYEVENTF_KEYUP ,0)
+        time.sleep(.1)
             
         
 
@@ -538,3 +579,5 @@ def typer(string=None,*args):
             win32api.keybd_event(VK_CODE[i], 0,0,0)
             time.sleep(.05)
             win32api.keybd_event(VK_CODE[i],0 ,win32con.KEYEVENTF_KEYUP ,0)
+
+            

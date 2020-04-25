@@ -26,6 +26,11 @@ class MouseHelper:
         time.sleep(.1)
         self.left_click()
         
+    def move_click_right_mouse(self, coord):
+        self.move_mouse(coord)
+        time.sleep(.1)
+        self.right_click()
+
     def get_coords(self):
         x, y = win32api.GetCursorPos()
         x = x - self.x_pad
