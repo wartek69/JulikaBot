@@ -10,7 +10,7 @@ If you want to add your own bot functionality / logic you can copy one of those 
 This bot was developed for the following settings:
 - Screen resolution: 1920x1080
 - Client resolution: 1280x720
-- In game resolution: 1280x72
+- In game resolution: 1280x720
 - Window mode: windowed
 
 All other settings should be default!
